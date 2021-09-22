@@ -1,0 +1,17 @@
+################### for waveshare CM4 IoT board #####################
+
+# Enable USB
+dtoverlay=dwc2,dr_mode=host
+
+# Enable CanBus
+#dtparam=spi=on
+dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25
+
+# Enable RS485/232
+dtoverlay=uart3
+dtoverlay=uart5
+
+# Enable RTC
+dtparam=i2c_vc=on
+dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi
+#dtparam=audio=on
