@@ -24,9 +24,9 @@
   myCache=./cache/$thisArch
 
 {
-  echo curl -L --range 0-999999999           -o $myCache/image.part1 $imageSource
-  echo curl -L --range 1000000000-1999999999 -o $myCache/image.part2 $imageSource
-  echo curl -L --range 2000000000-           -o $myCache/image.part3 $imageSource
+  echo curl -k -L --range 0-999999999           -o $myCache/image.part1 $imageSource
+  echo curl -k -L --range 1000000000-1999999999 -o $myCache/image.part2 $imageSource
+  echo curl -k -L --range 2000000000-           -o $myCache/image.part3 $imageSource
 } | xargs -L 1 -I CMD -P 2 bash -c CMD
 
   cat $myCache/image.part? > $myCache/$zipName
