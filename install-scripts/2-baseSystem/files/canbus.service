@@ -1,0 +1,13 @@
+[Unit]
+Description=CanBus interface can0
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/local/sbin/canbus-init
+ExecStart=/usr/sbin/ip link set can0 up
+ExecStop=/usr/sbin/ip link set can0 down
+
+[Install]
+WantedBy=multi-user.target
