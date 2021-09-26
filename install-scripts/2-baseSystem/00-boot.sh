@@ -3,6 +3,7 @@
 ## RaspOS
 if [ -f /boot/config.txt ]; then
   sed -i 's#dtparam=audio=on##' /boot/config.txt
+  #sed -i 's#enable_uart=1##' /boot/config.txt
 	cat $FILE_FOLDER/appendToConfig.txt >> /boot/config.txt
 fi
 
