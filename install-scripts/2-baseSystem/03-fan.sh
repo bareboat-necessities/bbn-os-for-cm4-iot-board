@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+apt-get -y -q install  raspberrypi-kernel-headers dkms
+
 CUR_DIR="$(pwd)"
 
 mkdir -p /home/user/fan &&  cd /home/user/fan
