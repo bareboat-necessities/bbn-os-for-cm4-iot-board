@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-apt-get -y -q install  raspberrypi-kernel-headers:arm64 dkms:arm64
+apt-get -y -q install  raspberrypi-kernel-headers:arm64 dkms
 
 CUR_DIR="$(pwd)"
 
