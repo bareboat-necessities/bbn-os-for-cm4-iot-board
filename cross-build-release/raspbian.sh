@@ -55,7 +55,7 @@
   ls -l $mkRoot
 
   mkdir -p ./cache/${thisArch}/stageCache
-  mkdir -p $mkRoot/install-scripts/stageCache
+  mkdir -p $mkRoot/install-scripts-cm4/stageCache
   mkdir -p /run/shm
   mkdir -p $mkRoot/run/shm
   mount -o bind /etc/resolv.conf $mkRoot/etc/resolv.conf
@@ -63,10 +63,10 @@
   mount -o bind /sys $mkRoot/sys
   mount -o bind /proc $mkRoot/proc
   mount -o bind /tmp $mkRoot/tmp
-  mount --rbind $myCache/stageCache $mkRoot/install-scripts/stageCache
+  mount --rbind $myCache/stageCache $mkRoot/install-scripts-cm4/stageCache
   mount --rbind /run/shm $mkRoot/run/shm
   chroot $mkRoot /bin/bash -xe <<EOF
-    set -x; set -e; cd /install-scripts; export LMBUILD="raspios"; ls; chmod +x *.sh; ./install.sh 0 2 a; exit
+    set -x; set -e; cd /install-scripts-cm4; export LMBUILD="raspios"; ls; chmod +x *.sh; ./install.sh 0 2 a; exit
 EOF
 
   # Unmount

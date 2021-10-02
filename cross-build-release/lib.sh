@@ -65,8 +65,8 @@ umountImageFile() {
   rootfs=./work/${thisArch}/rootfs
 
   rm -rf $rootfs/home/border
-  rm -rf $rootfs/install-scripts/stageCache/*
-  rm -rf $rootfs/install-scripts/logs/*
+  rm -rf $rootfs/install-scripts-cm4/stageCache/*
+  rm -rf $rootfs/install-scripts-cm4/logs/*
   find $rootfs/var/log/ -type f -exec rm -rf {} \;
   rm -rf $rootfs/tmp/*
 
@@ -75,7 +75,7 @@ umountImageFile() {
   umount $rootfs/sys
   umount $rootfs/proc
   umount $rootfs/tmp
-  umount $rootfs/install-scripts/stageCache
+  umount $rootfs/install-scripts-cm4/stageCache
   umount $rootfs/run/shm
   umount $rootfs/boot
   umount $rootfs
@@ -118,7 +118,7 @@ function addLysmarineScripts() {
   rootfs=./work/${thisArch}/rootfs
   log "copying lysmarine on the image"
   ls $rootfs
-  rm -rf ${rootfs}/install-scripts/
-  cp -r ./install-scripts ${rootfs}/
-  chmod 0775 ${rootfs}/install-scripts/install.sh
+  rm -rf ${rootfs}/install-scripts-cm4/
+  cp -r ./install-scripts-cm4 ${rootfs}/
+  chmod 0775 ${rootfs}/install-scripts-cm4/install.sh
 }
