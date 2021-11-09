@@ -11,7 +11,7 @@
     cpuArch="arm64"
   fi
 
-  zipName="lysmarine-bbn_2021-10-04-raspios-${cpuArch}.img.xz"
+  zipName="lysmarine-bbn_2021-11-08-raspios-${cpuArch}.img.xz"
   imageSource="https://archive.org/download/lysmarine-bbn-linux-LTS3/${zipName}"
 
   checkRoot
@@ -23,16 +23,14 @@
   log "Downloading official image from internet."
   myCache=./cache/$thisArch
 
-  wget -P $myCache/ $imageSource
+{
+  echo curl -k -L --range 0-999999999           -o $myCache/image.part1 $imageSource
+  echo curl -k -L --range 1000000000-1999999999 -o $myCache/image.part2 $imageSource
+  echo curl -k -L --range 2000000000-           -o $myCache/image.part3 $imageSource
+} | xargs -L 1 -I CMD -P 3 bash -c CMD
 
-#{
-#  echo curl -k -L --range 0-999999999           -o $myCache/image.part1 $imageSource
-#  echo curl -k -L --range 1000000000-1999999999 -o $myCache/image.part2 $imageSource
-#  echo curl -k -L --range 2000000000-           -o $myCache/image.part3 $imageSource
-#} | xargs -L 1 -I CMD -P 3 bash -c CMD
-#
-#  cat $myCache/image.part? > $myCache/$zipName
-#  rm $myCache/image.part?
+  cat $myCache/image.part? > $myCache/$zipName
+  rm $myCache/image.part?
 
   7z e -o$myCache/ $myCache/$zipName
   rm $myCache/$zipName
