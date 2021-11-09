@@ -12,7 +12,7 @@
   fi
 
   zipName="lysmarine-bbn_2021-10-04-raspios-${cpuArch}.img.xz"
-  imageSource="https://archive.org/download/lysmarine-bbn-linux-LTS2/${zipName}"
+  imageSource="https://archive.org/download/lysmarine-bbn-linux-LTS3/${zipName}"
 
   checkRoot
 
