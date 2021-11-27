@@ -104,6 +104,9 @@ inflateImage() {
     partitions=$(kpartx -sav $imageLocationInflated | cut -d' ' -f3)
     log $partitions
     loopId=$(echo $partitions | grep -oh '[0-9]*' | head -n 1)
+    if [ -z "${loopId}" ]; then
+      loopId=0
+    fi
     sleep 5
     ls -l /dev/mapper/
 
