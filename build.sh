@@ -23,4 +23,4 @@ export PKG_DISTRO=buster
 export PKG_ARCH=armhf
 export EMU=on
 
-.circleci/build-ci.sh
+.circleci/build-ci.sh 2>&1 | tee build.log
