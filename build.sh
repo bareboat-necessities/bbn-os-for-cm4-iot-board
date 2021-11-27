@@ -1,17 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/bash -xe
 
 sudo su
 
 apt-get update
 apt-get -y install docker.io wget
 
-cd /root || exit 1
-mkdir project || exit 2
-cd project || exit 3
+cd /root
+mkdir project
+cd project
 
 git clone https://github.com/bareboat-necessities/bbn-os-for-cm4-iot-board
 mv bbn-os-for-cm4-iot-board ci-source
-cd ci-source || exit 4
+cd ci-source
 
 mv install-scripts-cm4 cross-build-release/
 chmod a+x .circleci/*.sh
@@ -24,4 +24,3 @@ export PKG_ARCH=armhf
 export EMU=on
 
 .circleci/build-ci.sh
-
