@@ -4,6 +4,7 @@ apt-get update
 apt-get -y install docker.io wget
 
 cd /root
+rm -rf /root/project
 mkdir project
 cd project
 
