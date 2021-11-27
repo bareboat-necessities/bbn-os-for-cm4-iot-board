@@ -101,7 +101,9 @@ inflateImage() {
     fdisk -l $imageLocationInflated
 
     log "Resize the filesystem to fit the partition."
-    loopId=$(kpartx -sav $imageLocationInflated | cut -d" " -f3 | grep -oh '[0-9]*' | head -n 1)
+    partitions=$(kpartx -sav $imageLocationInflated | cut -d' ' -f3)
+    log $partitions
+    loopId=$(echo $partitions | grep -oh '[0-9]*' | head -n 1)
     sleep 5
     ls -l /dev/mapper/
 
