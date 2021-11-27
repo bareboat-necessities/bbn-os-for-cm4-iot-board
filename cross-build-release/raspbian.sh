@@ -11,7 +11,7 @@
     cpuArch="arm64"
   fi
 
-  zipName="lysmarine-bbn_2021-11-08-raspios-${cpuArch}.img.xz"
+  zipName="lysmarine-bbn_2021-11-15-raspios-${cpuArch}.img.xz"
   imageSource="https://archive.org/download/lysmarine-bbn-linux-LTS4/${zipName}"
 
   checkRoot
