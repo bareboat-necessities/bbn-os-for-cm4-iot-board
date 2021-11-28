@@ -11,28 +11,28 @@
     cpuArch="arm64"
   fi
 
-  zipName="lysmarine-bbn_2021-11-15-raspios-${cpuArch}.img.xz"
-  imageSource="https://archive.org/download/lysmarine-bbn-linux-LTS4/${zipName}"
-
   checkRoot
 
   # Create caching folder hierarchy to work with this architecture.
   setupWorkSpace $thisArch
 
-  # Download the official image
+  zipName="lysmarine-bbn_2021-11-15-raspios-${cpuArch}.img.xz"
+  imageSource="https://github.com/bareboat-necessities/lysmarine_gen/releases/download/v2021-11-15/${zipName}"
+
+# Download the official image
   log "Downloading official image from internet."
   myCache=./cache/$thisArch
-
+  prefix=$myCache/$zipName
 {
-  echo curl -k -L --range 0-499999999           -o $myCache/image.part1 $imageSource
-  echo curl -k -L --range 500000000-999999999   -o $myCache/image.part2 $imageSource
-  echo curl -k -L --range 1000000000-1499999999 -o $myCache/image.part3 $imageSource
-  echo curl -k -L --range 1500000000-1999999999 -o $myCache/image.part4 $imageSource
-  echo curl -k -L --range 2000000000-2499999999 -o $myCache/image.part5 $imageSource
-  echo curl -k -L --range 2500000000-           -o $myCache/image.part6 $imageSource
+  echo curl -k -L -o $prefix.part1 $imageSource.part1
+  echo curl -k -L -o $prefix.part2 $imageSource.part2
+  echo curl -k -L -o $prefix.part3 $imageSource.part3
+  echo curl -k -L -o $prefix.part4 $imageSource.part4
+  echo curl -k -L -o $prefix.part5 $imageSource.part5
+  echo curl -k -L -o $prefix.part6 $imageSource.part6
 } | xargs -L 1 -I CMD -P 6 bash -c CMD
 
-  cat $myCache/image.part? > $myCache/$zipName
+  cat $prefix.part? > $myCache/$zipName
   rm $myCache/image.part?
 
   7z e -o$myCache/ $myCache/$zipName
