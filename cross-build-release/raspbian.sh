@@ -33,7 +33,7 @@
 } | xargs -L 1 -I CMD -P 6 bash -c CMD
 
   cat $prefix.part? > $myCache/$zipName
-  rm $myCache/image.part?
+  rm $prefix.part?
 
   7z e -o$myCache/ $myCache/$zipName
   rm $myCache/$zipName
